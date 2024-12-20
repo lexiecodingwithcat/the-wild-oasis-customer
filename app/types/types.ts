@@ -1,6 +1,5 @@
-export interface User{
+export interface Cabin{
     id:number,
     name: string,
-    username:string,
-    email: string 
+    
 }
