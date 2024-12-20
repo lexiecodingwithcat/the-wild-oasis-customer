@@ -1,7 +1,16 @@
-import Logo from "@/app/_components/Logo"
-import Navigation from "@/app/_components/Navigation"
+import Logo from "@/app/_components/Logo";
+import Navigation from "@/app/_components/Navigation";
 
-import "./_styles/globals.css"
+// config fonts
+import {Josefin_Sans} from "next/font/google";
+
+const josefin = Josefin_Sans({
+  subsets:["latin"],
+  // once the josefin_sans has been downloaded, it will swap with the default
+  display:"swap",
+})
+console.log(josefin);
+import "./_styles/globals.css";
 
 export const metadata={
   // 
@@ -11,7 +20,6 @@ title:{
   },
   // good for SEO
   description: "Luxuries cabin hotel located in the heart of Banff, surrounded by beautiful snowy moutains and dark forests. ",
-  
 }
 
 export default function RootLayout({
@@ -21,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${josefin.className}`}>
         <header>
         <Logo />
         <Navigation />
