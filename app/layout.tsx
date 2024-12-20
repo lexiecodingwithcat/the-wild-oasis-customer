@@ -1,6 +1,8 @@
 import Logo from "@/app/_components/Logo"
 import Navigation from "@/app/_components/Navigation"
 
+import "./_styles/globals.css"
+
 export const metadata={
   title: "The Wild Oasis",
 
