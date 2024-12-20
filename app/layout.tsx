@@ -4,8 +4,14 @@ import Navigation from "@/app/_components/Navigation"
 import "./_styles/globals.css"
 
 export const metadata={
-  title: "The Wild Oasis",
-
+  // 
+title:{
+  template:"%s | The Wild Oasis",
+  default:"Welcome | The Wild Oasis"
+  },
+  // good for SEO
+  description: "Luxuries cabin hotel located in the heart of Banff, surrounded by beautiful snowy moutains and dark forests. ",
+  
 }
 
 export default function RootLayout({
