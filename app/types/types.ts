@@ -3,3 +3,8 @@ export interface Cabin{
     name: string,
     
 }
+
+export interface Reservation{
+    id:number,
+    
+}
