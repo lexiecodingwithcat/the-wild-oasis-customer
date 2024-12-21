@@ -8,7 +8,7 @@ const josefin = Josefin_Sans({
   // once the josefin_sans has been downloaded, it will swap with the default
   display:"swap",
 })
-console.log(josefin);
+// console.log(josefin);
 import "./_styles/globals.css";
 
 export const metadata={
