@@ -1,13 +1,25 @@
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
-import { getCabin } from "@/app/_lib/data-service";
+import { getCabin, getCabins } from "@/app/_lib/data-service";
 import Image from "next/image";
 
 //this function will get access to the current paramas and able to generate dynamic metadata based on that
-export async function generateMetadata({ params }) {
-  const { name } = await getCabin(params.cabinId);
+export async function generateMetadata(params) {
+  const { cabinId } = await params;
+  const { name } = await getCabin(cabinId);
+  // const { name } = await getCabin(params.cabinId);
   return {
     title: `Cabin ${name}`,
   };
+}
+
+//this function will tell Next.js which params exist for this dynamic route
+//make this page a static route,better for performance
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+  const ids = cabins.map((cabin) => ({ cabinId: String(cabin.id) }));
+  // because we set the dynamic route as cabinId:"id", so we need to return the array contains the same format of it
+  // console.log(ids);
+  return ids;
 }
 
 export default async function Page({ params }) {
