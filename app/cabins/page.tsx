@@ -6,7 +6,7 @@ import Spinner from "@/app/_components/Spinner";
 //so we have to manually set up the re-validate data to 0
 //this value cant be computed, should be a value, and always be seonds
 // export const revalidate = 0;
-export const revalidate = 15;
+// export const revalidate = 15;
 
 export const metadata={
   title:"Cabins"
