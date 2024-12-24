@@ -2,11 +2,18 @@ import { Suspense } from "react";
 import CabinList from "@/app/_components/CabinList";
 import Spinner from "@/app/_components/Spinner";
 
+// since the page is static, the data cache and whole route cache will prevent the updated data at route level
+//so we have to manually set up the re-validate data to 0
+//this value cant be computed, should be a value, and always be seonds
+// export const revalidate = 0;
+export const revalidate = 15;
+
 export const metadata={
   title:"Cabins"
 }
 
-export default async function Page() {
+
+export default function Page() {
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
