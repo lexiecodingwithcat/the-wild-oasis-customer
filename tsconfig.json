@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "app/cabins/[cabinId]/page.js", "app/error.js"  ],
+, "app/cabins/[cabinId]/page.js", "app/error.js", "app/_components/CabinList.js", "app/cabins/page.js"  ],
   "exclude": [
     "node_modules"
   ]
