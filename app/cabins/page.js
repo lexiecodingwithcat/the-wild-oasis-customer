@@ -15,7 +15,7 @@ export const metadata = {
 
 export default async function Page({ searchParams }) {
   const { capacity } = await searchParams;
-  console.log(searchParams);
+
   const filter = capacity ?? "all"; //if the caspacity is null/ undefined, use all
 
   return (
@@ -37,7 +37,8 @@ export default async function Page({ searchParams }) {
       {/* use suspence to partially spin the page */}
       {/* 2. put the component into Suspense */}
       {/* 3. pass a react component into the fallback function */}
-      <Suspense fallback={<Spinner />}>
+      {/* we pass a unique key to the Suspence because it will not hide the already rendered content*/}
+      <Suspense fallback={<Spinner />} key={filter}>
         {/* 1. wrap the data fetching function into a component  */}
         <CabinList filter={filter} />
       </Suspense>

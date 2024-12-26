@@ -8,6 +8,10 @@ function Filter() {
   const router = useRouter();
   //grasp the prefix of the URL
   const pathname = usePathname();
+
+  //read current value for making current filter active
+  const activeFilter = searhParams.get("capacity") ?? "all";
+
   function handleFilter(filter) {
     //get the date in the URL
     //1.web API to build the URL
@@ -19,31 +23,48 @@ function Filter() {
   }
   return (
     <div className="border border-primary-800 flex">
-      <button
-        className="px-5 py-2 hover:bg-primary-700"
-        onClick={() => handleFilter("all")}
+      <Button
+        filter="all"
+        activeFilter={activeFilter}
+        handleFilter={handleFilter}
       >
         All cabins
-      </button>
-      <button
-        className="px-5 py-2 hover:bg-primary-700"
-        onClick={() => handleFilter("small")}
+      </Button>
+      <Button
+        filter="small"
+        activeFilter={activeFilter}
+        handleFilter={handleFilter}
       >
         1&mdash;3 cabins
-      </button>
-      <button
-        className="px-5 py-2 hover:bg-primary-700"
-        onClick={() => handleFilter("medium")}
+      </Button>
+      <Button
+        filter="medium"
+        activeFilter={activeFilter}
+        handleFilter={handleFilter}
       >
         4&mdash;7 cabins
-      </button>
-      <button
-        className="px-5 py-2 hover:bg-primary-700"
-        onClick={() => handleFilter("large")}
+      </Button>
+      <Button
+        filter="large"
+        activeFilter={activeFilter}
+        handleFilter={handleFilter}
       >
         8&mdash;12 cabins
-      </button>
+      </Button>
     </div>
+  );
+}
+
+function Button({ filter, handleFilter, activeFilter, children }) {
+  return (
+    <button
+      className={`px-5 py-2 hover:bg-primary-700 ${
+        activeFilter === filter ? "bg-primary-700 text-primary-50" : ""
+      }`}
+      onClick={() => handleFilter(filter)}
+    >
+      {children}
+    </button>
   );
 }
 
