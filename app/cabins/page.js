@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import CabinList from "@/app/_components/CabinList";
 import Spinner from "@/app/_components/Spinner";
 import Filter from "@/app/_components/Filter";
+import ReservationReminder from "@/app/_components/ReservationReminder";
 
 // since the page is static, the data cache and whole route cache will prevent the updated data at route level
 //so we have to manually set up the re-validate data to 0
@@ -41,6 +42,7 @@ export default async function Page({ searchParams }) {
       <Suspense fallback={<Spinner />} key={filter}>
         {/* 1. wrap the data fetching function into a component  */}
         <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   );
