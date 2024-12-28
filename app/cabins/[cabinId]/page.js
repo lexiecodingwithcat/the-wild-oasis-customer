@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Spinner from "@/app/_components/Spinner";
 import Cabin from "@/app/_components/Cabin";
 
-//this function will get access to the current paramas and able to generate dynamic metadata based on that
+//this function will get access to the current params and able to generate dynamic metadata based on that
 export async function generateMetadata({ params }) {
   const { cabinId } = await params;
   const { name } = await getCabin(cabinId);
