@@ -3,7 +3,6 @@ import { auth } from "@/app/_lib/auth";
 
 export default async function Navigation() {
   const session = await auth();
-  console.log(session);
   return (
     <nav className="text-xl z-10">
       <ul className="flex gap-16 items-center">
