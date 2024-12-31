@@ -2,7 +2,7 @@
 // by writing "user server", it become server actions, and all functions should be async
 import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { supabase } from "./supabase";
-// import { updateGuest } from "./data-service";
+import { revalidatePath } from "next/cache";
 
 export async function signInAction() {
   // This function is meant to be used in the server component
@@ -37,5 +37,7 @@ export async function updateGuest(formData) {
   if (error) {
     throw new Error("Guest could not be updated" + error.message);
   }
-  // return data;
+  //revalidate the data
+  //all data under the route will be cleared and re-fetched
+  revalidatePath("/account/profile");
 }
