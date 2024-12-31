@@ -89,7 +89,7 @@ export async function getBookings(guestId) {
     .order("startDate");
 
   if (error) {
-    console.error(error);
+    console.error(error.message);
     throw new Error("Bookings could not get loaded");
   }
 
