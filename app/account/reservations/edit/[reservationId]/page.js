@@ -1,6 +1,5 @@
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 import { updateReservation } from "@/app/_lib/actions";
-import { auth } from "@/app/_lib/auth";
 import SubmitButton from "@/app/_components/SubmitButton";
 
 export default async function Page({ params }) {
@@ -10,10 +9,6 @@ export default async function Page({ params }) {
   const { numGuests, observations, cabinId } = await getBooking(reservationId);
   //get maxCapacity
   const { maxCapacity } = await getCabin(cabinId);
-  // console.log(numGuests, observations);
-  // CHANGE
-  // const reservationId = 23;
-  // const maxCapacity = 23;
 
   return (
     <div>
