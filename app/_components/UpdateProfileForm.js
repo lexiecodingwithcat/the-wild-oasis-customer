@@ -1,9 +1,7 @@
-"use client";
-import { useFormStatus } from "react-dom";
 import SubmitButton from "@/app/_components/SubmitButton";
 import { updateGuest } from "../_lib/actions";
+
 function UpdateProfileForm({ guest, children }) {
-  // const countryFlag = "pt.jpg";
   const { fullName, email, natioanlity, nationalID, countryFlag } = guest;
   return (
     <form
