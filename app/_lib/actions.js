@@ -4,6 +4,7 @@ import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { getBookings } from "./data-service";
+import { redirect } from "next/navigation";
 
 export async function signInAction() {
   // This function is meant to be used in the server component
@@ -66,4 +67,44 @@ export async function deleteReservation(bookingId) {
 
   //update UI after the server action has finished
   revalidatePath("/account/reservation");
+}
+
+export async function updateReservation(formData) {
+  //1. user authentication
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in.");
+
+  //2. user authorization
+  //check whether the user has the authroity to update the booking
+  const reservationId = Number(formData.get("reservationId"));
+  const numGuests = Number(formData.get("numGuests"));
+  //restrict the number of words in observation
+  const observations = formData.get("observations").slice(0, 100);
+  const guestBookings = await getBookings(session.user.guestId);
+  const bookingIds = guestBookings.map((booking) => booking.id);
+  if (!bookingIds.includes(reservationId)) {
+    throw new Error("You are not allowed to update this booking.");
+  }
+
+  //3.building update data
+  const updateData = { numGuests, observations };
+
+  //4. data mutation
+  const { error } = await supabase
+    .from("bookings")
+    .update(updateData)
+    .eq("id", reservationId)
+    .select()
+    .single();
+
+  //5. error handling
+  if (error) {
+    throw new Error("Booking could not be updated");
+  }
+
+  revalidatePath(`/account/reservations/edit/${reservationId}`);
+  revalidatePath("/account/reservations");
+
+  //redirect to the reservation page
+  redirect("/account/reservations");
 }
