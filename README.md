@@ -40,7 +40,7 @@ The project consists of two main components:
 ## Installation and Running 🏃‍♂️
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/the-wild-oasis-customer.git
+   git clone https://github.com/lexiecodingwithcat/the-wild-oasis-customer.git
 
 2. Navigate to the project directory:
    cd banff-forest-cabins-management
